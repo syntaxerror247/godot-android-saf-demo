@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://dgfbgj861db5m"]
+
+[ext_resource type="Script" uid="uid://c2wgc6wygo4fe" path="res://main.gd" id="1_ig7tw"]
+
+[node name="Main" type="MarginContainer" unique_id=1006695718]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+script = ExtResource("1_ig7tw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1532839206]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1792645430]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "SAF Demo"
+horizontal_alignment = 1
+
+[node name="uri" type="LineEdit" parent="VBoxContainer" unique_id=914754653]
+layout_mode = 2
+placeholder_text = "current URI"
+editable = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+
+[node name="TreeFilePath" type="LineEdit" parent="VBoxContainer" unique_id=1812015882]
+layout_mode = 2
+placeholder_text = "file path relative to tree uri"
+caret_blink = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer" unique_id=2036131603]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="CopyUri" type="Button" parent="VBoxContainer/HBoxContainer4" unique_id=768049876]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Copy URI"
+
+[node name="Paste" type="Button" parent="VBoxContainer/HBoxContainer4" unique_id=1085309847]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Paste"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1602274594]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="PickFile" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=419447833]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pick File"
+
+[node name="PickDirectory" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=720613929]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pick Directory"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=526979478]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="WriteFile" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=276419844]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Write File"
+
+[node name="ReadFile" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=1140617870]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Read File"
+
+[node name="EncryptedRW" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=661145248]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Encrypted RW"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=495023348]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="GrantPersist" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=1146431340]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Grant Persist"
+
+[node name="ReleasePersist" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=876225471]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Release Persist"
+
+[node name="Logs" type="RichTextLabel" parent="VBoxContainer" unique_id=533536529]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Note: Submit the relative file path after you edit it."
+
+[connection signal="text_submitted" from="VBoxContainer/uri" to="." method="_on_uri_text_submitted"]
+[connection signal="text_submitted" from="VBoxContainer/TreeFilePath" to="." method="_on_tree_file_path_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/CopyUri" to="." method="_on_copy_uri_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/Paste" to="." method="_on_paste_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/PickFile" to="." method="pick_file"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/PickDirectory" to="." method="pick_directory"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/WriteFile" to="." method="write_file"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ReadFile" to="." method="read_file"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/EncryptedRW" to="." method="encrypted_rw"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/GrantPersist" to="." method="set_persist" binds= [true]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/ReleasePersist" to="." method="set_persist" binds= [false]]
